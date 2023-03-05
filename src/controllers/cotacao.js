@@ -1,9 +1,10 @@
-const axios = require('axios');
 const fs = require('fs/promises');
+const { instanciaAxios } = require('../config/axios')
 const { format, parseISO } = require('date-fns')
 
 const requisicao = async (moeda1, moeda2) => {
-    const cotacaoMoeda = await axios.get(`https://economia.awesomeapi.com.br/last/${moeda1}-${moeda2}`)
+    const params = moeda1 + '-' + moeda2
+    const cotacaoMoeda = await instanciaAxios.get(params)
     const data = cotacaoMoeda.data[moeda1 + moeda2]
     const { bid, create_date, name } = data
     const arrayName = name.split('/')
@@ -45,7 +46,7 @@ const converterValores = async (req, res) => {
 }
 const listarMoedas = async (req, res) => {
     try {
-        const lista = await fs.readFile('./src/dados/moedas.json')
+        const lista = await fs.readFile('./src/data/moedas.json')
         const listaParse = JSON.parse(lista)
         return res.status(200).json(listaParse)
     } catch (error) {

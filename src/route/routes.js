@@ -1,5 +1,5 @@
 const express = require('express');
-const { converterValores, listarMoedas, obterCotacaoMoeda } = require('./controladores/cotacao');
+const { converterValores, listarMoedas, obterCotacaoMoeda } = require('../controllers/cotacao');
 const route = express();
 
 

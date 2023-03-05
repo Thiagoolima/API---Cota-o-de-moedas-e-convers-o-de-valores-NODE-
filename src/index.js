@@ -1,5 +1,5 @@
 const express = require('express');
-const { route } = require('./routes');
+const { route } = require('./route/routes');
 const app = express();
 
 app.use(express.json())
